@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Interactive Story of the Ampersand</title>
+    <!-- Chosen Palette: Earthy Neutrals -->
+    <!-- Application Structure Plan: A narrative, single-page application guiding the user chronologically through the ampersand's history. The structure begins with a hero section, followed by its Roman origins (visualized with an HTML/CSS diagram), an interactive vertical timeline built from the report's Table 1, a visual explanation of its naming, a dashboard-style section for its modern usage (featuring a Chart.js visualization of Table 2's data), a showcase of key typographers, and a conclusion. This narrative flow was chosen over a direct mirror of the report to create a more engaging, story-driven experience, turning dense historical text into an interactive journey that is easier for users to explore and digest. -->
+    <!-- Visualization & Content Choices: Report Info: Timeline data from Table 1 -> Goal: Show Change -> Viz/Method: Interactive vertical timeline using HTML/CSS. Interaction: Scroll-based navigation. Justification: More engaging than a static table. | Report Info: Modern usage categories from Table 2 -> Goal: Compare -> Viz/Method: Bar Chart using Chart.js (Canvas). Interaction: Tooltips on hover. Justification: Visually represents the relative importance of different usage domains. | Report Info: Origin story -> Goal: Inform -> Viz/Method: HTML/CSS diagram of 'E' + 'T' -> '&'. Justification: Simplifies a core concept visually. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FDFCF7; /* Off-white, warm neutral */
+            color: #3D405B; /* Dark, muted blue-gray for text */
+            font-family: 'Lato', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Merriweather', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+        }
+        .bg-accent { background-color: #81B29A; } /* Muted Teal */
+        .text-accent { color: #81B29A; }
+        .bg-secondary { background-color: #E07A5F; } /* Muted Coral */
+        .text-secondary { color: #E07A5F; }
+        .border-secondary { border-color: #E07A5F; }
+        .bg-subtle { background-color: #F4F1DE; } /* Very light cream */
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-20 bg-subtle">
+        <div class="container mx-auto px-6">
+            <h1 class="text-8xl md:text-9xl font-black text-secondary">&</h1>
+            <h2 class="text-3xl md:text-5xl font-bold mt-4 text-gray-800">The Enduring Legacy of the Ampersand</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">An interactive journey through more than 2,000 years of history, from a Roman shortcut to a global icon.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="origin" class="my-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Born in Roman Script</h3>
+                <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    The ampersand's story begins not as a deliberate design, but as a practical solution for efficiency. In the 1st century CE, Roman scribes, seeking to write faster, began merging the letters 'e' and 't' from the Latin word "et" (meaning "and") into a single form called a ligature.
+                </p>
+                <div class="flex items-center justify-center space-x-4 md:space-x-8 text-2xl md:text-4xl font-serif font-bold text-gray-500">
+                    <span class="text-gray-800">E</span>
+                    <span>+</span>
+                    <span class="text-gray-800">T</span>
+                    <span class="text-secondary">→</span>
+                    <span class="text-5xl md:text-7xl text-gray-800">&</span>
+                </div>
+                <p class="mt-6 text-sm text-gray-500">The oldest known example of this practice was discovered in graffiti in Pompeii, dating to 79 AD.</p>
+            </div>
+        </section>
+
+        <section id="timeline" class="my-24">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">A Journey Through Time</h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Follow the ampersand's evolution from a scribal shortcut to a formalized symbol. This timeline highlights the key milestones that shaped its form and function over the centuries.
+                </p>
+            </div>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute left-1/2 w-0.5 h-full bg-accent opacity-50 transform -translate-x-1/2"></div>
+                <!-- Timeline Item: Tiro's Notes -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center md:flex-row-reverse">
+                        <div class="md:w-1/2"></div>
+                        <div class="w-10 h-10 bg-accent rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center text-white font-bold">1</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg md:w-1/2">
+                            <h4 class="font-bold text-secondary text-lg">1st Century BCE</h4>
+                            <p class="text-sm mt-2 text-gray-600">Marcus Tullius Tiro develops a shorthand system, including a distinct symbol for "et" (⁊), a precursor in purpose but not in form to the modern ampersand.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Item: Ligature Emerges -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center">
+                        <div class="md:w-1/2"></div>
+                        <div class="w-10 h-10 bg-accent rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center text-white font-bold">2</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg md:w-1/2">
+                            <h4 class="font-bold text-secondary text-lg">1st Century CE</h4>
+                            <p class="text-sm mt-2 text-gray-600">The ligature of 'e' and 't' emerges organically in Roman cursive. The oldest form is found in Pompeii.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Item: Carolingian Formalization -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center md:flex-row-reverse">
+                        <div class="md:w-1/2"></div>
+                        <div class="w-10 h-10 bg-accent rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center text-white font-bold">3</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg md:w-1/2">
+                            <h4 class="font-bold text-secondary text-lg">8th Century</h4>
+                            <p class="text-sm mt-2 text-gray-600">The symbol becomes widely used and formalized by Carolingian scribes, establishing the Roman style still common today.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Timeline Item: Naming -->
+                <div class="relative mb-12">
+                    <div class="md:flex items-center">
+                        <div class="md:w-1/2"></div>
+                        <div class="w-10 h-10 bg-accent rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center text-white font-bold">4</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg md:w-1/2">
+                            <h4 class="font-bold text-secondary text-lg">19th Century</h4>
+                            <p class="text-sm mt-2 text-gray-600">Taught as the 27th letter, its name "ampersand" is born from the slurred recitation of "and, per se and."</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Timeline Item: Contemporary -->
+                <div class="relative">
+                    <div class="md:flex items-center md:flex-row-reverse">
+                        <div class="md:w-1/2"></div>
+                        <div class="w-10 h-10 bg-accent rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center text-white font-bold">5</div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg md:w-1/2">
+                            <h4 class="font-bold text-secondary text-lg">Contemporary Era</h4>
+                            <p class="text-sm mt-2 text-gray-600">The ampersand is an essential element in branding, programming, and every new Latin font design, with endless artistic variations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="naming-story" class="my-24 bg-subtle py-16">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                 <h3 class="text-3xl font-bold text-gray-800 mb-4">The Curious Case of "Ampersand"</h3>
+                 <p class="text-lg text-gray-600 leading-relaxed mb-8">
+                    The symbol's peculiar name isn't derived from its form, but from a classroom recitation. In the 19th century, '&' was considered the 27th letter. When schoolchildren recited the alphabet, they concluded with "X, Y, Z, and, per se, and" (meaning "and, by itself, and"). Over time, this phrase was slurred into the word we use today.
+                 </p>
+                 <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 font-serif text-lg">
+                    <div class="p-4 bg-white rounded-lg shadow-sm">"and <i class="text-gray-500">per se</i> and"</div>
+                    <div class="text-2xl text-secondary font-sans font-bold">→</div>
+                    <div class="p-4 bg-white rounded-lg shadow-sm">"Ann Passy Ann"</div>
+                    <div class="text-2xl text-secondary font-sans font-bold">→</div>
+                    <div class="p-4 bg-white rounded-lg shadow-sm text-secondary font-bold">"Ampersand"</div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="modern-usage" class="my-24">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">The Ampersand Today: A Modern Resurgence</h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    While no longer common in formal prose, the ampersand has thrived in new contexts. Its ability to save space and visually convey connection has made it indispensable in business, technology, and the arts. This chart illustrates the domains where the ampersand's presence is most significant.
+                </p>
+            </div>
+            <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <div class="chart-container">
+                    <canvas id="usageChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="typographers" class="my-24">
+             <div class="max-w-4xl mx-auto text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Masters of the Mark</h3>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    The ampersand's journey from a functional mark to a subject of artistic expression was shaped by influential typographers who studied, refined, and reimagined its form.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h4 class="font-bold text-secondary text-xl">Jan Tschichold</h4>
+                    <p class="text-sm mt-2 text-gray-600">His 1953 booklet meticulously chronicled the symbol's visual history, solidifying its academic importance.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h4 class="font-bold text-secondary text-xl">Ludovico Arrighi</h4>
+                    <p class="text-sm mt-2 text-gray-600">A Renaissance master whose influential italic types shaped the aesthetic of decorative ampersands.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h4 class="font-bold text-secondary text-xl">Robert Granjon</h4>
+                    <p class="text-sm mt-2 text-gray-600">A 16th-century designer whose innovative "Baroque" italics contributed to the ampersand's artistic variations.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h4 class="font-bold text-secondary text-xl">Robert Slimbach</h4>
+                    <p class="text-sm mt-2 text-gray-600">A contemporary designer whose Poetica font offers over 50 ampersand variations, showcasing its modern artistic freedom.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold">A Small Symbol with an Outsized History</h3>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-300">
+                The ampersand is a testament to how language evolves—shaped by efficiency, art, and technology. It remains a powerful symbol of connection, linking ideas, people, and cultures across time.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const usageCtx = document.getElementById('usageChart').getContext('2d');
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const wrapLabel = (label, maxLength) => {
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    const separator = currentLine.length > 0 ? ' ' : '';
+                    if ((currentLine + separator + word).length <= maxLength) {
+                        currentLine += separator + word;
+                    } else {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+            
+            const originalLabels = [
+                'Business & Branding', 
+                'Arts & Entertainment', 
+                'Academic & Technical', 
+                'Informal Communication'
+            ];
+            
+            const wrappedLabels = originalLabels.map(label => wrapLabel(label, 16));
+
+            new Chart(usageCtx, {
+                type: 'bar',
+                data: {
+                    labels: wrappedLabels,
+                    datasets: [{
+                        label: 'Prevalence of Use',
+                        data: [40, 25, 20, 15],
+                        backgroundColor: [
+                            'rgba(224, 122, 95, 0.7)',  // Muted Coral
+                            'rgba(129, 178, 154, 0.7)', // Muted Teal
+                            'rgba(61, 64, 91, 0.7)',   // Dark Blue-Gray
+                            'rgba(244, 241, 222, 0.9)'  // Light Cream (use border)
+                        ],
+                        borderColor: [
+                            '#E07A5F',
+                            '#81B29A',
+                            '#3D405B',
+                            '#E07A5F'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(61, 64, 91, 0.1)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                },
+                                color: '#3D405B'
+                            }
+                        },
+                        y: {
+                           grid: {
+                                display: false
+                           },
+                           ticks: {
+                                color: '#3D405B'
+                           }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    return `Prevalence: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
